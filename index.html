@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Les Vestes qui Dorment</title>
+  <meta name="description" content="Association qui réveille les vestes qui dorment dans les placards pour les offrir à celles et ceux qui dorment dehors. Une veste rapportée au bar, une bière offerte.">
+  <meta name="theme-color" content="#0F2A61">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <meta property="og:title" content="Les Vestes qui Dorment">
+  <meta property="og:description" content="Une veste rapportée, une bière offerte, une personne au chaud.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lesvestesquidorment.fr/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F2A61;
+      --bleu: #1278F0;
+      --moutarde: #E7B539;
+      --creme: #FBF7EE;
+      --texte: #1B2440;
+      --doux: #5A6380;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: "Fredoka", system-ui, sans-serif;
+      background: var(--creme);
+      color: var(--texte);
+      line-height: 1.55;
+      -webkit-tap-highlight-color: transparent;
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 20px 64px; }
+    .hero { text-align: center; }
+    .hero img { width: min(340px, 80vw); height: auto; }
+    .hero p {
+      font-size: 1.25rem; margin-top: 20px; color: var(--navy);
+    }
+    .hero p strong { color: var(--bleu); font-weight: 600; }
+    .badge {
+      display: inline-block; margin-top: 18px; padding: 6px 14px;
+      border-radius: 999px; background: var(--moutarde); color: var(--navy);
+      font-weight: 500; font-size: .95rem;
+    }
+    section { margin-top: 56px; }
+    h2 { color: var(--navy); font-weight: 600; font-size: 1.5rem; margin-bottom: 14px; }
+    form { display: grid; gap: 14px; }
+    label { font-weight: 500; color: var(--navy); font-size: .95rem; }
+    input, textarea {
+      width: 100%; margin-top: 6px; padding: 12px 14px;
+      font: inherit; font-size: 16px; color: var(--texte);
+      background: #fff; border: 2px solid #E3DED1; border-radius: 12px;
+      transition: border-color .15s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--bleu); }
+    textarea { min-height: 140px; resize: vertical; }
+    .piege { position: absolute; left: -9999px; }
+    button {
+      justify-self: start; padding: 12px 24px; border: 0; border-radius: 999px;
+      background: var(--navy); color: #fff; font: inherit; font-weight: 600;
+      cursor: pointer; transition: transform .12s ease-out, background .15s;
+    }
+    button:hover { background: var(--bleu); }
+    button:active { transform: scale(.97); }
+    .mail { margin-top: 14px; color: var(--doux); }
+    .mail a { color: var(--bleu); }
+    footer {
+      margin-top: 64px; padding-top: 24px; border-top: 1px solid #E3DED1;
+      color: var(--doux); font-size: .9rem;
+    }
+    details summary { cursor: pointer; color: var(--navy); font-weight: 500; }
+    details p { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <img src="logo.svg" alt="Les Vestes qui Dorment : une doudoune bleue endormie sur un oreiller" width="472" height="429">
+      <p>On réveille les vestes qui dorment au chaud dans les placards pour les offrir à celles et ceux qui dorment dehors.<br><strong>Une veste rapportée au bar, une bière offerte.</strong></p>
+      <span class="badge">Site en construction</span>
+    </header>
+
+    <section id="contact">
+      <h2>Nous écrire</h2>
+      <form action="https://formsubmit.co/contact@lesvestesquidorment.fr" method="POST">
+        <input type="hidden" name="_subject" value="Nouveau message depuis lesvestesquidorment.fr">
+        <input type="hidden" name="_next" value="https://lesvestesquidorment.fr/merci.html">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+        <input type="text" name="_honey" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Nom
+          <input type="text" name="nom" autocomplete="name" required>
+        </label>
+        <label>E-mail
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Message
+          <textarea name="message" placeholder="Un bar, une station, des vestes à donner, une envie de nous aider…" required></textarea>
+        </label>
+        <button type="submit">Envoyer</button>
+      </form>
+      <p class="mail">Ou directement : <a href="mailto:contact@lesvestesquidorment.fr">contact@lesvestesquidorment.fr</a></p>
+    </section>
+
+    <footer>
+      <details>
+        <summary>Mentions légales</summary>
+        <p><strong>Éditeur :</strong> association Les Vestes qui Dorment (loi du 1er juillet 1901), siège social à Capbreton (40130). Contact : contact@lesvestesquidorment.fr.</p>
+        <p><strong>Directeur de la publication :</strong> le président de l'association.</p>
+        <p><strong>Hébergeur :</strong> GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+        <p><strong>Données personnelles :</strong> les informations envoyées via le formulaire servent uniquement à vous répondre et ne sont jamais cédées. Pour les faire supprimer, écrivez-nous.</p>
+      </details>
+      <p style="margin-top:14px">© 2026 Les Vestes qui Dorment</p>
+    </footer>
+  </main>
+</body>
+</html>
