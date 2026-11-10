@@ -43,8 +43,11 @@
     <section id="top" class="film" data-sc-act="pin" data-sc-span="20" aria-label="L'histoire d'une veste, en film">
       <div data-sc-stage class="film__scene">
         <canvas class="film__fond" width="32" height="18" aria-hidden="true"></canvas>
-        <img class="film__poster" src="img/affiche.webp" width="1920" height="1080" alt="">
-        <video class="film__video" muted playsinline preload="none" aria-hidden="true" data-src-1080="video/film-1080.mp4" data-src-720="video/film-720.mp4"></video>
+        <picture>
+          <source media="(orientation: portrait)" srcset="img/affiche-vertical.webp" width="720" height="1280">
+          <img class="film__poster" src="img/affiche.webp" width="1920" height="1080" alt="">
+        </picture>
+        <video class="film__video" muted playsinline preload="none" aria-hidden="true" data-src-1080="video/film-1080.mp4" data-src-720="video/film-720.mp4" data-src-vertical="video/film-vertical.mp4"></video>
         <p class="film__charge" aria-hidden="true">Chargement du film…</p>
         <p class="film__defile" aria-hidden="true">Fais défiler ↓</p>
         <div class="bulles">

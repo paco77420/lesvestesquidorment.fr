@@ -45,7 +45,10 @@
   // ------------------------------------------------------- chargement du film
   var petit = COARSE || Math.max(screen.width, screen.height) * (devicePixelRatio || 1) < 1600 ||
               (navigator.connection && navigator.connection.saveData);
-  var src = video.getAttribute(petit ? 'data-src-720' : 'data-src-1080');
+  // écran en hauteur (téléphone) : le film vertical 9:16 ; sinon le 16:9
+  var portrait = matchMedia('(orientation: portrait)').matches;
+  var src = video.getAttribute(portrait ? 'data-src-vertical' : (petit ? 'data-src-720' : 'data-src-1080'));
+  if (portrait) film.classList.add('vertical');
   var pret = false;
   // la vidéo entière en mémoire : le déplacement dans le temps est alors instantané
   fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
