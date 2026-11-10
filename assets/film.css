@@ -30,19 +30,19 @@ a{color:var(--bleu-texte)}
 
 /* ------------------------------------------------------ bulles de texte -- */
 .bulles{position:absolute;inset:0;z-index:7;pointer-events:none}
-.bulle{position:absolute;margin:0;max-width:min(30rem,calc(100% - 7rem));padding:.85rem 1.2rem;border-radius:22px;
+.bulle{position:absolute;margin:0;width:max-content;max-width:min(21rem,calc(100% - 7rem));padding:.75rem 1.05rem;border-radius:22px;
   background:rgba(251,247,238,.94);color:var(--navy);border:3px solid var(--navy);box-shadow:4px 5px 0 rgba(15,42,97,.55);
-  font:600 clamp(1.02rem,.9rem + .55vw,1.45rem)/1.3 var(--sc-font-display);text-wrap:balance;
+  font:600 clamp(1.02rem,.9rem + .55vw,1.45rem)/1.3 var(--sc-font-display);text-wrap:pretty;
   opacity:0;transform:translateY(10px) scale(.96);transition:opacity .35s var(--e-snap),transform .45s var(--e-gonfle)}
 .bulle.est-la{opacity:1;transform:none}
-.bulle--grande{font-size:clamp(1.3rem,1rem + 1.4vw,2.2rem);background:var(--moutarde);border-color:var(--navy)}
+.bulle--grande{max-width:min(25rem,calc(100% - 7rem));font-size:clamp(1.25rem,1rem + 1.2vw,2rem);background:var(--moutarde);border-color:var(--navy)}
 .bulle[data-pos="haut"]{left:50%;top:max(11vh,calc(env(safe-area-inset-top) + 84px));transform:translate(-50%,10px) scale(.96)}
 .bulle[data-pos="haut"].est-la{transform:translate(-50%,0)}
 .bulle[data-pos="gauche"]{left:max(4vw,16px);top:18vh}
 .bulle[data-pos="bas"]{left:max(4vw,16px);bottom:max(10vh,calc(env(safe-area-inset-bottom) + 64px))}
 @media (orientation:portrait){
   /* film vertical plein écran : les bulles se posent en haut ou en bas de l'image */
-  .bulle{left:16px!important;right:52px;max-width:none;transform:translateY(10px) scale(.96)}
+  .bulle,.bulle--grande{left:20px!important;right:auto;max-width:min(17.5rem,calc(100% - 84px));transform:translateY(10px) scale(.96)}
   .bulle.est-la,.bulle[data-pos="haut"].est-la{transform:none}
   .bulle[data-pos="haut"]{transform:translateY(10px) scale(.96)}
   .bulle[data-pos="haut"],.bulle[data-pos="gauche"]{top:calc(env(safe-area-inset-top) + 76px);bottom:auto}
