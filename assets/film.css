@@ -148,3 +148,11 @@ a{color:var(--bleu-texte)}
   .onglets.cache{transform:translateX(-50%);opacity:0;pointer-events:none}
   .bouton:hover,.bouton:active,.onglets a:hover,.onglets a:active{transform:none}
 }
+
+/* dernière bulle : sous les mains, sur deux lignes */
+.bulle.bulle--fin{max-width:min(31rem,calc(100% - 7rem));left:50%;transform:translate(-50%,10px) scale(.96);bottom:max(7vh,calc(env(safe-area-inset-bottom) + 24px))}
+.bulle.bulle--fin.est-la{transform:translate(-50%,0)}
+@media (orientation:portrait){
+  .bulle.bulle--fin{left:16px!important;right:auto;max-width:calc(100% - 68px);font-size:clamp(1.05rem,.9rem + 1vw,1.3rem);bottom:max(9vh,calc(env(safe-area-inset-bottom) + 56px));transform:translateY(10px) scale(.96)}
+  .bulle.bulle--fin.est-la{transform:none}
+}
