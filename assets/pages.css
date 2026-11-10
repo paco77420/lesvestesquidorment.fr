@@ -43,7 +43,7 @@ body{background:#2A1A12}
 .faits li{display:flex;gap:.6rem;align-items:baseline}
 .faits li::before{content:"";flex:none;width:.55rem;height:.55rem;border-radius:50%;background:var(--moutarde);box-shadow:0 0 0 3px rgba(231,181,57,.25);transform:translateY(-.1rem)}
 .lien-externe{display:inline-block;margin-top:1.2rem;font-weight:700;color:var(--bleu-texte)}
-.frise{margin-top:2.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.frise{margin-top:2.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
 .frise .fiche h3{margin-top:.8rem}
 
 /* --- participation */
@@ -67,3 +67,40 @@ body{background:#2A1A12}
   .prochain__image img{aspect-ratio:4/3;height:auto}
   .page-tete,.bois,.pied-simple{padding-right:calc(var(--sc-gutter) + 24px)}
 }
+
+.bois--clair{background:linear-gradient(#2F1D12,#3E2818 40%,#2F1D12)}
+.logo-sombre{background:#0E0E10;border-radius:10px;padding:.45rem .7rem;box-sizing:content-box}
+/* affiche de l'événement à venir */
+.affiche-evt{margin-top:2.2rem;padding:0;overflow:hidden;display:grid;grid-template-columns:1.15fr 1fr}
+.affiche-evt__visuel img{display:block;width:100%;height:100%;object-fit:cover;min-height:280px}
+.affiche-evt__texte{padding:clamp(1.4rem,3vw,2.2rem)}
+.affiche-evt__logos{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.affiche-evt__logos img{height:72px;width:auto}
+.affiche-evt__logos .logo-sombre{height:46px}
+.affiche-evt__logos span{font:700 1.6rem/1 var(--sc-font-display);color:#A06A12}
+/* partenaires */
+.partenaires{margin-top:2.2rem;display:grid;gap:1.6rem}
+.partenaire{position:relative;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(1.2rem,3vw,2.2rem);align-items:center;overflow:visible}
+.partenaire__image{width:100%;height:auto;border-radius:14px;box-shadow:0 10px 26px -14px rgba(0,0,0,.5)}
+.partenaire__galerie{display:grid;gap:.7rem}
+.partenaire__galerie img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:14px}
+.partenaire__logo{display:block;height:64px;width:auto;margin-bottom:.9rem}
+.partenaire__logo.logo-sombre{height:34px}
+.partenaire__perso{position:absolute;right:-18px;bottom:-26px;width:clamp(90px,12vw,150px);height:auto;transform:rotate(8deg);pointer-events:none}
+.engagement{margin-top:1rem!important;padding:.8rem 1rem;border-radius:12px;background:#F3E4C8;color:#3A2416!important;font-weight:700}
+/* profils */
+.profils{margin-top:2.2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.profil{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.profil>img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+.profil__texte{padding:1.3rem 1.4rem 1.5rem;display:flex;flex-direction:column;align-items:flex-start;flex:1}
+.profil__qui{margin:0!important;font:700 .8rem/1.2 var(--sc-font-display);letter-spacing:.1em;text-transform:uppercase;color:#A06A12!important}
+.profil h3{margin-top:.45rem}
+.profil ul{margin-bottom:.3rem}
+.profil .bouton{margin-top:auto}
+.profil .bouton{margin-top:auto}.profil__texte>:nth-last-child(2){margin-bottom:1.3rem}
+@media (max-width:860px){
+  .affiche-evt,.partenaire,.profils{grid-template-columns:1fr}
+  .partenaire__perso{right:-6px;bottom:-18px}
+}
+.partenaire__logo-grand{display:grid;place-items:center;background:#fff;border-radius:14px;padding:clamp(1.5rem,4vw,3rem);min-height:260px}
+.partenaire__logo-grand img{width:min(100%,300px);height:auto}

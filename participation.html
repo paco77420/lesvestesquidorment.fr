@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Participation · Les Vestes qui Dorment</title>
-  <meta name="description" content="Organiser une collecte de vestes dans sa station : une seule journée de son temps, une belle soirée pour le bar, et des vêtements chauds pour celles et ceux qui dorment dehors.">
+  <meta name="description" content="Particulier, bar ou station : organiser une collecte de vestes dans sa station, en une journée de son temps.">
   <meta name="theme-color" content="#0F2A61">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -32,23 +32,65 @@
       <div class="page-tete__inner">
         <div>
           <p class="page-tete__surtitre">Participation</p>
-          <h1>Une journée de ton temps, <span>une collecte dans ta station</span></h1>
-          <p>Pas besoin d'y passer l'hiver : en une seule journée, tu peux organiser une soirée de collecte dans un bar de ta station.</p>
+          <h1>Une collecte <span>dans ta station</span></h1>
+          <p>Particulier, bar ou station : il suffit d'une journée de ton temps pour réveiller les vestes de toute une station.</p>
         </div>
-        <img src="img/vignette-veste.webp" width="1200" height="900" alt="Une doudoune bleue pliée au milieu d'une pile de pulls, dans un placard de grenier de chalet." fetchpriority="high">
+        <img src="img/vignette-station.webp" width="1200" height="900" alt="Une station de ski la nuit, ses chalets illuminés sous les montagnes enneigées." fetchpriority="high">
       </div>
       <div class="guirlande" aria-hidden="true"></div>
     </section>
 
-    <section class="bois" aria-labelledby="t-journee">
+    <!-- ============ LES TROIS PROFILS ============ -->
+    <section class="bois" aria-labelledby="t-profils">
       <div class="bois__inner">
-        <h2 id="t-journee">Comment se passe <span>la journée</span></h2>
-        <p class="intro">Trois temps, et c'est tout.</p>
+        <h2 id="t-profils">Tu es <span>plutôt…</span></h2>
+        <div class="profils">
+          <article class="fiche profil" id="particulier">
+            <img src="img/vignette-veste.webp" width="1200" height="900" alt="" loading="lazy">
+            <div class="profil__texte">
+              <p class="profil__qui">Un particulier</p>
+              <h3>Trouve un bar que ça branche</h3>
+              <p>C'est très simple : trouve dans ta station un bar qui a envie de jouer le jeu, et contacte-nous. On met tout en place avec vous.</p>
+              <a class="bouton" href="index.html#contact" data-profil="station">On en parle</a>
+            </div>
+          </article>
+          <article class="fiche profil" id="bar">
+            <img src="img/vignette-bar.webp" width="1200" height="900" alt="" loading="lazy">
+            <div class="profil__texte">
+              <p class="profil__qui">Un bar</p>
+              <h3>On monte la soirée ensemble</h3>
+              <p>Tu veux accueillir une collecte ? On la met en place directement avec toi.</p>
+              <ul>
+                <li>C'est bon pour l'image de ton bar.</li>
+                <li>Avec ce thème, la plupart des gens font l'effort de venir : c'est une belle soirée.</li>
+                <li>Une veste rapportée, une bière ou un soft offert.</li>
+              </ul>
+              <a class="bouton" href="index.html#contact" data-profil="bar">Accueillir une soirée</a>
+            </div>
+          </article>
+          <article class="fiche profil" id="station">
+            <img src="img/partenaires/rockonsnow-bandeau.webp" width="1440" height="600" alt="" loading="lazy">
+            <div class="profil__texte">
+              <p class="profil__qui">Une station, un office du tourisme, une mairie</p>
+              <h3>Une collecte dans ta station</h3>
+              <p>Tu aimerais organiser ça chez toi ? Contacte-nous : on trouve ensemble un bar qui a envie de jouer le jeu, et on met tout en place.</p>
+              <a class="bouton" href="index.html#contact" data-profil="station">Organiser une collecte</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LES ÉTAPES ============ -->
+    <section class="bois bois--clair" aria-labelledby="t-journee">
+      <div class="bois__inner">
+        <h2 id="t-journee">Ensuite, <span>trois étapes</span></h2>
+        <p class="intro">Dans tous les cas, ça se passe de la même façon.</p>
         <div class="journee">
           <article class="fiche">
-            <h3>On prépare ensemble</h3>
-            <p class="duree">Une semaine avant, puis quelques heures le jour J</p>
-            <p>Une semaine avant, on prépare ensemble les posts pour les réseaux sociaux, et on peut t'envoyer des affiches papier à placarder dans la station. Le jour J, on installe le coin collecte avec l'équipe du bar.</p>
+            <h3>On lance la communication</h3>
+            <p class="duree">Une semaine avant</p>
+            <p>On prépare ensemble les posts pour les réseaux sociaux, et on t'envoie des affiches papier à placarder dans la station.</p>
           </article>
           <article class="fiche">
             <h3>La collecte au bar</h3>
@@ -58,35 +100,24 @@
           <article class="fiche">
             <h3>On apporte les vestes</h3>
             <p class="duree">1 à 2 heures le lendemain</p>
-            <p>On dépose tout ce qui a été récolté auprès d'une association locale, qui les remet à celles et ceux qui dorment dehors.</p>
+            <p>On dépose tout auprès d'une association locale, comme le Secours populaire, qui les redistribue aux personnes qui dorment dehors.</p>
           </article>
         </div>
         <p class="total">Au total : à peine une journée, pour beaucoup de gens au chaud.</p>
 
         <div class="deux-col">
-          <article class="fiche" id="bar">
-            <h3>Tu tiens un bar en station ?</h3>
-            <p>Tu peux porter la soirée toi-même, on t'accompagne.</p>
-            <ul>
-              <li>C'est bon pour l'image du bar : ton établissement est associé à une action solidaire concrète.</li>
-              <li>On passe une bonne soirée : avec ce thème, la plupart des gens font l'effort de venir ce soir-là.</li>
-              <li>Le principe est simple à annoncer : une veste rapportée, une bière ou un soft offert.</li>
-            </ul>
-          </article>
           <article class="fiche">
             <h3>On dit « des vestes », mais…</h3>
-            <p>Tous les vêtements chauds sont les bienvenus, à condition qu'ils soient propres et en bon état :</p>
-            <ul>
-              <li>doudounes, vestes et manteaux ;</li>
-              <li>polaires, pulls et sweats ;</li>
-              <li>pantalons de ski, gants, bonnets, écharpes.</li>
-            </ul>
-            <p>Et la bière peut aussi être un soft : chacun choisit.</p>
+            <p>Tous les vêtements chauds sont les bienvenus, propres et en bon état : doudounes, vestes et manteaux, polaires, pulls et sweats, pantalons de ski, gants, bonnets, écharpes.</p>
+          </article>
+          <article class="fiche">
+            <h3>Jamais revendues</h3>
+            <p>Toutes les vestes récoltées sont redistribuées. Elles ne sont jamais revendues : chacune va directement à quelqu'un qui en a besoin.</p>
           </article>
         </div>
 
         <div class="appel">
-          <p>Envie de lancer une soirée dans ta station ou dans ton bar ? Écris-nous, on t'aide à démarrer.</p>
+          <p>Envie de te lancer ? Écris-nous, on t'aide à démarrer.</p>
           <a class="bouton" href="index.html#contact">Nous écrire</a>
           <a class="bouton" href="evenements.html">Voir la prochaine soirée</a>
         </div>
@@ -100,5 +131,6 @@
       <p><a href="index.html#contact">Mentions légales et contact</a></p>
     </div>
   </footer>
+  <script src="assets/onglets.js" defer></script>
 </body>
 </html>

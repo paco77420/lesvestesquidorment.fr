@@ -121,9 +121,30 @@ a{color:var(--bleu-texte)}
 .rm .zip{opacity:1;pointer-events:auto}
 
 /* --------------------------------------------------------- les onglets -- */
-.onglets{position:fixed;z-index:70;top:max(12px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);max-width:calc(100% - 80px)}
-.onglets nav{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(10,26,61,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 24px -10px rgba(0,0,0,.6),0 0 0 1px rgba(255,214,150,.22)}
-.onglets a{display:inline-flex;align-items:center;min-height:40px;padding:0 1.05rem;border-radius:999px;color:var(--creme);text-decoration:none;font:600 clamp(.9rem,.85rem + .2vw,1rem)/1 var(--sc-font-display);white-space:nowrap;transition:background var(--t-pop) var(--e-snap)}
-.onglets a:hover{background:rgba(251,247,238,.12)}
-.onglets a[aria-current="page"]{background:var(--moutarde);color:#2F1D12}
-@media (max-width:420px){.onglets a{padding:0 .75rem;font-size:.85rem}}
+.onglets{position:fixed;z-index:70;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);max-width:calc(100% - 60px);
+  transition:transform .42s var(--e-snap),opacity .3s var(--e-snap)}
+.onglets.cache{transform:translate(-50%,calc(-100% - 28px));opacity:0}
+.onglets nav{display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(10,26,61,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 10px 30px -12px rgba(0,0,0,.65),0 0 0 1.5px rgba(255,214,150,.3)}
+.onglets a{position:relative;display:inline-flex;align-items:center;min-height:50px;padding:0 1.45rem;border-radius:999px;color:var(--creme);text-decoration:none;
+  font:700 clamp(1rem,.92rem + .35vw,1.18rem)/1 var(--sc-font-display);letter-spacing:.01em;white-space:nowrap;
+  transition:background .25s var(--e-snap),color .25s var(--e-snap),transform .33s var(--e-gonfle)}
+.onglets a[aria-current="page"]{background:var(--moutarde);color:#2F1D12;box-shadow:0 3px 0 #B7861F}
+.onglets a:active{transform:scale(.92);transition-duration:.1s}
+@media (hover:hover){
+  .onglets a:hover{background:rgba(251,247,238,.16);transform:translateY(-2px)}
+  .onglets a[aria-current="page"]:hover{background:#F0C14A}
+}
+@media (max-width:480px){.onglets{max-width:calc(100% - 48px)}.onglets a{min-height:44px;padding:0 .85rem;font-size:.95rem}}
+@media (max-width:360px){.onglets a{padding:0 .6rem;font-size:.88rem}}
+
+/* --------------------------------------------------------- les boutons -- */
+.bouton{transition:transform .33s var(--e-gonfle),box-shadow .25s var(--e-snap),background .25s var(--e-snap)}
+@media (hover:hover){
+  .bouton:hover{transform:translateY(-3px) rotate(-1deg);box-shadow:0 7px 0 #B7861F;background:#F0C14A}
+}
+.bouton:active{transform:translateY(3px) scale(.95);box-shadow:0 1px 0 #B7861F;transition-duration:.1s}
+@media (prefers-reduced-motion:reduce){
+  .onglets,.onglets a,.bouton{transition:opacity .2s,background .2s}
+  .onglets.cache{transform:translateX(-50%);opacity:0;pointer-events:none}
+  .bouton:hover,.bouton:active,.onglets a:hover,.onglets a:active{transform:none}
+}
