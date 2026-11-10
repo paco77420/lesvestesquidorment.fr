@@ -47,15 +47,62 @@
               (navigator.connection && navigator.connection.saveData);
   // écran en hauteur (téléphone) : le film vertical 9:16 ; sinon le 16:9
   var portrait = matchMedia('(orientation: portrait)').matches;
-  var src = video.getAttribute(portrait ? 'data-src-vertical' : (petit ? 'data-src-720' : 'data-src-1080'));
   if (portrait) film.classList.add('vertical');
   var pret = false;
-  // la vidéo entière en mémoire : le déplacement dans le temps est alors instantané
-  fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
-    video.src = URL.createObjectURL(b);
-    video.addEventListener('loadeddata', function () { pret = true; film.classList.add('pret'); }, { once: true });
-    video.load();
-  }).catch(function () { video.src = src; video.addEventListener('loadeddata', function () { pret = true; film.classList.add('pret'); }, { once: true }); });
+  var SEQ = portrait;   // téléphone : film en images, dessiné sur un canvas
+  var NB = 647, FPS = 24, imgs = new Array(NB), seq = null, sctx = null, dernierDessin = -1;
+
+  if (SEQ) {
+    // ---- téléphone : 647 images légères, chargées par passes (1 sur 8, puis 1 sur 4, 1 sur 2, toutes)
+    film.classList.add('seq');
+    seq = document.createElement('canvas'); seq.className = 'film__seq'; seq.setAttribute('aria-hidden', 'true');
+    scene.insertBefore(seq, video); video.remove();
+    sctx = seq.getContext('2d', { alpha: false });
+    var base = 'video/seq/';
+    var ordre = [], vu = {};
+    [8, 4, 2, 1].forEach(function (pas) { for (var i = 0; i < NB; i += pas) if (!vu[i]) { vu[i] = 1; ordre.push(i); } });
+    if (!vu[NB - 1]) ordre.splice(1, 0, NB - 1);
+    var k = 0, enCours = 0, MAX = 6, charges = 0;
+    function suivant() {
+      while (enCours < MAX && k < ordre.length) {
+        (function (i) {
+          var im = new Image(); im.decoding = 'async'; enCours++;
+          im.onload = function () {
+            enCours--; charges++;
+            var fin = function () { imgs[i] = im; if (!pret && imgs[0] && charges >= 24) { pret = true; film.classList.add('pret'); } dernierDessin = -1; suivant(); };
+            if (im.decode) im.decode().then(fin, fin); else fin();
+          };
+          im.onerror = function () { enCours--; suivant(); };
+          im.src = base + String(i).padStart(3, '0') + '.webp';
+        })(ordre[k++]);
+      }
+    }
+    suivant();
+    var tailleCanvas = function () {
+      var r = Math.min(devicePixelRatio || 1, 2);
+      seq.width = Math.round(scene.clientWidth * r); seq.height = Math.round(scene.clientHeight * r); dernierDessin = -1;
+    };
+    tailleCanvas(); addEventListener('resize', tailleCanvas);
+  } else {
+    var src = video.getAttribute(petit ? 'data-src-720' : 'data-src-1080');
+    // la vidéo entière en mémoire : le déplacement dans le temps est alors instantané
+    fetch(src).then(function (r) { return r.blob(); }).then(function (b) {
+      video.src = URL.createObjectURL(b);
+      video.addEventListener('loadeddata', function () { pret = true; film.classList.add('pret'); }, { once: true });
+      video.load();
+    }).catch(function () { video.src = src; video.addEventListener('loadeddata', function () { pret = true; film.classList.add('pret'); }, { once: true }); });
+  }
+
+  function dessiner(i) {
+    // l'image demandée, ou la plus proche déjà chargée
+    var j = i;
+    if (!imgs[j]) { for (var d = 1; d < NB; d++) { if (imgs[i - d]) { j = i - d; break; } if (imgs[i + d]) { j = i + d; break; } } }
+    var im = imgs[j]; if (!im || j === dernierDessin) return;
+    dernierDessin = j;
+    var cw = seq.width, ch = seq.height, s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
+    var w = im.naturalWidth * s, h = im.naturalHeight * s;
+    sctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+  }
 
   // ------------------------------------------------------- géométrie de l'image
   var bulles = Array.prototype.map.call(document.querySelectorAll('.bulle'), function (el) {
@@ -81,7 +128,12 @@
   (function boucle() {
     var cible = acte ? acte.p : 0, d = cible - lisse;
     if (premier || Math.abs(d) > 0.00002) { lisse = premier || Math.abs(d) < 0.0001 ? cible : lisse + d * LERP; premier = false; }
-    if (pret) {
+    if (pret && SEQ) {
+      cur += (lisse - cur) * 0.5;
+      var idx = Math.round(cur * (NB - 1));
+      dessiner(idx);
+      rendreBulles(idx / FPS);
+    } else if (pret) {
       var D = video.duration || 27;
       cur += (lisse - cur) * 0.35;
       var t = cur * (D - 0.04);
