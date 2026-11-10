@@ -3,117 +3,155 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Les Vestes qui Dorment</title>
+  <title>Les Vestes qui Dorment · une veste rapportée, une bière offerte</title>
   <meta name="description" content="Association qui réveille les vestes qui dorment dans les placards pour les offrir à celles et ceux qui dorment dehors. Une veste rapportée au bar, une bière offerte.">
   <meta name="theme-color" content="#0F2A61">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta property="og:title" content="Les Vestes qui Dorment">
   <meta property="og:description" content="Une veste rapportée, une bière offerte, une personne au chaud.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lesvestesquidorment.fr/">
+  <meta property="og:image" content="https://lesvestesquidorment.fr/img/plan-08.webp">
+  <script>
+    /* Réglé avant le premier rendu : la page sait tout de suite si elle bouge. */
+    document.documentElement.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches ? 'rm' : 'mv');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy: #0F2A61;
-      --bleu: #1278F0;
-      --moutarde: #E7B539;
-      --creme: #FBF7EE;
-      --texte: #1B2440;
-      --doux: #5A6380;
-    }
-    * { box-sizing: border-box; margin: 0; }
-    html { -webkit-text-size-adjust: 100%; }
-    body {
-      font-family: "Fredoka", system-ui, sans-serif;
-      background: var(--creme);
-      color: var(--texte);
-      line-height: 1.55;
-      -webkit-tap-highlight-color: transparent;
-    }
-    main { max-width: 640px; margin: 0 auto; padding: 48px 20px 64px; }
-    .hero { text-align: center; }
-    .hero img { width: min(340px, 80vw); height: auto; }
-    .hero p {
-      font-size: 1.25rem; margin-top: 20px; color: var(--navy);
-    }
-    .hero p strong { color: var(--bleu); font-weight: 600; }
-    .badge {
-      display: inline-block; margin-top: 18px; padding: 6px 14px;
-      border-radius: 999px; background: var(--moutarde); color: var(--navy);
-      font-weight: 500; font-size: .95rem;
-    }
-    section { margin-top: 56px; }
-    h2 { color: var(--navy); font-weight: 600; font-size: 1.5rem; margin-bottom: 14px; }
-    form { display: grid; gap: 14px; }
-    label { font-weight: 500; color: var(--navy); font-size: .95rem; }
-    input, textarea {
-      width: 100%; margin-top: 6px; padding: 12px 14px;
-      font: inherit; font-size: 16px; color: var(--texte);
-      background: #fff; border: 2px solid #E3DED1; border-radius: 12px;
-      transition: border-color .15s;
-    }
-    input:focus, textarea:focus { outline: none; border-color: var(--bleu); }
-    textarea { min-height: 140px; resize: vertical; }
-    .piege { position: absolute; left: -9999px; }
-    button {
-      justify-self: start; padding: 12px 24px; border: 0; border-radius: 999px;
-      background: var(--navy); color: #fff; font: inherit; font-weight: 600;
-      cursor: pointer; transition: transform .12s ease-out, background .15s;
-    }
-    button:hover { background: var(--bleu); }
-    button:active { transform: scale(.97); }
-    .mail { margin-top: 14px; color: var(--doux); }
-    .mail a { color: var(--bleu); }
-    footer {
-      margin-top: 64px; padding-top: 24px; border-top: 1px solid #E3DED1;
-      color: var(--doux); font-size: .9rem;
-    }
-    details summary { cursor: pointer; color: var(--navy); font-weight: 500; }
-    details p { margin-top: 10px; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/affiche.webp">
+  <link rel="stylesheet" href="assets/scrollcraft.css">
+  <link rel="stylesheet" href="assets/film.css">
 </head>
 <body>
-  <main>
-    <header class="hero">
-      <img src="logo.svg" alt="Les Vestes qui Dorment : une doudoune bleue endormie sur un oreiller" width="472" height="429">
-      <p>On réveille les vestes qui dorment au chaud dans les placards pour les offrir à celles et ceux qui dorment dehors.<br><strong>Une veste rapportée au bar, une bière offerte.</strong></p>
-      <span class="badge">Site en construction</span>
-    </header>
+  <a class="evitement" href="#contact">Aller directement au formulaire de contact</a>
 
-    <section id="contact">
-      <h2>Nous écrire</h2>
-      <form action="https://formsubmit.co/contact@lesvestesquidorment.fr" method="POST">
-        <input type="hidden" name="_subject" value="Nouveau message depuis lesvestesquidorment.fr">
-        <input type="hidden" name="_next" value="https://lesvestesquidorment.fr/merci.html">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="box">
-        <input type="text" name="_honey" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label>Nom
-          <input type="text" name="nom" autocomplete="name" required>
-        </label>
-        <label>E-mail
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-        <label>Message
-          <textarea name="message" placeholder="Un bar, une station, des vestes à donner, une envie de nous aider…" required></textarea>
-        </label>
-        <button type="submit">Envoyer</button>
-      </form>
-      <p class="mail">Ou directement : <a href="mailto:contact@lesvestesquidorment.fr">contact@lesvestesquidorment.fr</a></p>
+  <!-- La fermeture éclair : repère de position dans la page, présente tout du long. -->
+  <nav class="zip" aria-label="Fermeture éclair, position dans la page">
+    <div class="zip__dents zip__dents--ouvertes" aria-hidden="true"></div>
+    <div class="zip__dents zip__dents--fermees" aria-hidden="true"></div>
+    <div class="zip__tirette" role="slider" tabindex="0" aria-label="Tirette : faire glisser pour parcourir la page" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <svg viewBox="0 0 40 76" aria-hidden="true"><path class="t-corps" d="M8 4h24a4 4 0 0 1 4 4v18c0 4-3 7-6 9l-6 4H16l-6-4c-3-2-6-5-6-9V8a4 4 0 0 1 4-4z"/><path class="t-lien" d="M16 38h8v8h-8z"/><rect class="t-languette" x="11" y="44" width="18" height="30" rx="9"/><rect class="t-trou" x="17" y="58" width="6" height="10" rx="3"/></svg>
+    </div>
+  </nav>
+
+  <main>
+    <h1 class="sr-only">Les Vestes qui Dorment : on réveille les vestes qui dorment dans les placards pour celles et ceux qui dorment dehors</h1>
+
+    <!-- ===================== LE FILM : 27 s de plan-séquence, déroulés sur 20 hauteurs d'écran ===================== -->
+    <section id="top" class="film" data-sc-act="pin" data-sc-span="20" aria-label="L'histoire d'une veste, en film">
+      <div data-sc-stage class="film__scene">
+        <canvas class="film__fond" width="32" height="18" aria-hidden="true"></canvas>
+        <img class="film__poster" src="img/affiche.webp" width="1920" height="1080" alt="">
+        <video class="film__video" muted playsinline preload="none" aria-hidden="true" data-src-1080="video/film-1080.mp4" data-src-720="video/film-720.mp4"></video>
+        <p class="film__charge" aria-hidden="true">Chargement du film…</p>
+        <p class="film__defile" aria-hidden="true">Fais défiler ↓</p>
+        <div class="bulles">
+          <p class="bulle" data-de="0.4" data-a="3.2" data-pos="haut">Elle, tu la connais. Elle a dévalé quelques pistes, puis l'hiver s'est fini.</p>
+          <p class="bulle" data-de="4.4" data-a="7.2" data-pos="gauche">Les saisons passent. Les autres vêtements s'empilent sur elle.</p>
+          <p class="bulle" data-de="7.6" data-a="9.8" data-pos="gauche">Tout au fond du placard, elle ne sort plus. Elle dort.</p>
+          <p class="bulle" data-de="12.6" data-a="15.2" data-pos="bas">Un soir, dans un bar de station, on organise une collecte.</p>
+          <p class="bulle bulle--grande" data-de="16.8" data-a="19.8" data-pos="haut">Une veste rapportée, une bière offerte.</p>
+          <p class="bulle" data-de="20.4" data-a="22.4" data-pos="bas">Puis une association de solidarité prend le relais.</p>
+          <p class="bulle bulle--grande" data-de="24.4" data-a="27.5" data-pos="haut">Et cette nuit, quelqu'un dort au chaud.</p>
+        </div>
+      </div>
+      <p class="sr-only">Le film raconte l'histoire d'une doudoune bleue. Elle s'ouvre sur une chambre ; pliée, elle apparaît dans l'armoire et d'autres vêtements s'empilent sur elle pendant que les saisons passent à la fenêtre. La nuit tombe, on monte vers la lune, puis on redescend vers un chalet de station dont l'affiche annonce la collecte du soir. Au comptoir, la doudoune est échangée contre une bière. Une photo accrochée au mur s'anime : dans la rue enneigée, quelqu'un apporte la doudoune et la tend à une personne qui la prend dans ses mains gantées de mitaines.</p>
+      <!-- Mouvement réduit : le film devient une planche d'images fixes. -->
+      <ol class="planche">
+        <li><img src="img/plan-01.webp" width="1280" height="720" loading="lazy" alt="Une doudoune bleue à capuche, fermée, sur un fond uni."></li>
+        <li><img src="img/plan-02.webp" width="1280" height="720" loading="lazy" alt="La fermeture éclair descend sur la doudoune matelassée."></li>
+        <li><img src="img/plan-03.webp" width="1280" height="720" loading="lazy" alt="La doudoune s'est ouverte sur une chambre : l'armoire ouverte, la fenêtre, la lampe, le lit."></li>
+        <li><img src="img/plan-04.webp" width="1280" height="720" loading="lazy" alt="Dans l'armoire, des vêtements de toutes les couleurs sont empilés sur la doudoune bleue pliée ; les saisons passent à la fenêtre."></li>
+        <li><img src="img/plan-05.webp" width="1280" height="720" loading="lazy" alt="Un croissant de lune dans un ciel étoilé."></li>
+        <li><img src="img/plan-06.webp" width="1280" height="720" loading="lazy" alt="Un chalet de station sous la neige, la nuit, entouré de sapins."></li>
+        <li><img src="img/plan-07.webp" width="1280" height="720" loading="lazy" alt="La porte du chalet, avec l'affiche de la collecte du soir."></li>
+        <li><img src="img/plan-08.webp" width="1280" height="720" loading="lazy" alt="Au comptoir du bar, la doudoune pliée est échangée contre une bière, devant des clients souriants."></li>
+        <li><img src="img/plan-09.webp" width="1280" height="720" loading="lazy" alt="Une photo encadrée au mur du bar : une rue enneigée et un grand flocon."></li>
+        <li><img src="img/plan-10.webp" width="1280" height="720" loading="lazy" alt="Dans la rue, le flocon s'envole au passage de quelqu'un qui porte la doudoune."></li>
+        <li><img src="img/plan-11.webp" width="1280" height="720" loading="lazy" alt="Les mains gantées de moutarde portent la doudoune pliée dans la rue."></li>
+        <li><img src="img/plan-12.webp" width="1280" height="720" loading="lazy" alt="La doudoune est tendue à une personne qui la prend dans ses mains en mitaines grises."></li>
+      </ol>
     </section>
 
-    <footer>
-      <details>
-        <summary>Mentions légales</summary>
-        <p><strong>Éditeur :</strong> association Les Vestes qui Dorment (loi du 1er juillet 1901), siège social à Capbreton (40130). Contact : contact@lesvestesquidorment.fr.</p>
-        <p><strong>Directeur de la publication :</strong> le président de l'association.</p>
-        <p><strong>Hébergeur :</strong> GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
-        <p><strong>Données personnelles :</strong> les informations envoyées via le formulaire servent uniquement à vous répondre et ne sont jamais cédées. Pour les faire supprimer, écrivez-nous.</p>
-      </details>
-      <p style="margin-top:14px">© 2026 Les Vestes qui Dorment</p>
-    </footer>
+    <!-- ===================== APRÈS LE FILM : on reste dans la nuit de la rue, sous les guirlandes ===================== -->
+    <section class="invitation">
+      <div class="invitation__inner" data-sc-in>
+        <h2>Toi aussi, tu as une veste <span>qui dort&nbsp;?</span></h2>
+        <p>On réveille les vestes et le matos de montagne qui dorment au fond des placards pour les offrir à celles et ceux qui dorment dehors. La collecte se fait pendant des soirées dans des bars de stations de ski : le bar fait une belle soirée, on passe un bon moment, et les vestes repartent au chaud avec une association de solidarité partenaire.</p>
+        <p class="invitation__formule">Une veste rapportée au bar, une bière offerte.</p>
+      </div>
+      <div class="guirlande" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===================== LES TROIS PORTES : le bois et la lumière du bar ===================== -->
+    <section class="portes">
+      <div class="sc-wrap">
+        <h2 class="portes__titre" data-sc-in>Trois façons de la réveiller</h2>
+        <div class="portes__grille" data-sc-in data-sc-stagger="200">
+          <article class="porte">
+            <img class="porte__vignette" src="img/vignette-veste.webp" width="1200" height="900" alt="Une doudoune bleue pliée au milieu d'une pile de pulls, dans un placard de grenier de chalet." loading="lazy">
+            <h3>J'ai une veste qui dort</h3>
+            <p>Si c'est chaud et propre, ça peut servir. Rapporte-la à la prochaine soirée dans ta station : le bar t'offre une bière.</p>
+            <a class="bouton" href="#contact" data-profil="veste">Être prévenu de la prochaine soirée</a>
+          </article>
+          <article class="porte">
+            <img class="porte__vignette" src="img/vignette-bar.webp" width="1200" height="900" alt="Un chalet d'altitude avec, sur sa porte, l'affiche « Collecte ce soir, 1 veste = 1 bière »." loading="lazy">
+            <h3>J'ai un bar en station</h3>
+            <p>Une soirée qui fait venir du monde, une ambiance qui fait du bien, et ton bar associé à une action solidaire. On en parle et on cale une date ensemble.</p>
+            <a class="bouton" href="#contact" data-profil="bar">Accueillir une soirée</a>
+          </article>
+          <article class="porte">
+            <img class="porte__vignette" src="img/vignette-station.webp" width="1200" height="900" alt="Une station de ski la nuit, ses chalets illuminés sous les montagnes enneigées." loading="lazy">
+            <h3>Je veux lancer ça dans ma station</h3>
+            <p>Ça tourne à Avoriaz depuis deux ans. On cherche des référents locaux pour essaimer dans d'autres stations, et on t'aide à démarrer.</p>
+            <a class="bouton" href="#contact" data-profil="station">Devenir référent local</a>
+          </article>
+        </div>
+        <div class="avoriaz" data-sc-in>
+          <h3>À Avoriaz, depuis deux ans</h3>
+          <dl class="avoriaz__faits">
+            <div><dt>Vestes réveillées</dt><dd class="a-completer">[À COMPLÉTER : nombre de vestes collectées]</dd></div>
+            <div><dt>Soirées organisées</dt><dd class="a-completer">[À COMPLÉTER : nombre de soirées]</dd></div>
+            <div><dt>Prochaine soirée</dt><dd class="a-completer">[À COMPLÉTER : date et bar]</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="contact__ciel"><img src="img/montagnes.webp" width="2000" height="1000" alt="" loading="lazy"><h2>Écris-nous</h2></div>
+      <div class="contact__corps">
+        <form class="formulaire" action="https://formsubmit.co/contact@lesvestesquidorment.fr" method="POST">
+          <input type="hidden" name="_subject" value="Nouveau message depuis lesvestesquidorment.fr">
+          <input type="hidden" name="_next" value="https://lesvestesquidorment.fr/merci.html">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="box">
+          <input type="text" name="_honey" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="formulaire__intro">Une veste, un bar, une station, une question : on lit tout et on répond vite.</p>
+          <div class="champ"><label for="f-nom">Ton nom</label><input id="f-nom" type="text" name="nom" autocomplete="name" required></div>
+          <div class="champ"><label for="f-email">Ton e-mail</label><input id="f-email" type="email" name="email" autocomplete="email" required></div>
+          <div class="champ"><label for="f-profil">Tu nous écris parce que…</label><select id="f-profil" name="profil"><option value="veste">J'ai des vestes à donner</option><option value="bar">J'ai un bar en station</option><option value="station">Je veux lancer ça dans ma station</option><option value="autre" selected>Autre chose</option></select></div>
+          <div class="champ"><label for="f-station">Ta station <span class="facultatif">(facultatif)</span></label><input id="f-station" type="text" name="station" autocomplete="off"></div>
+          <div class="champ champ--large"><label for="f-message">Ton message</label><textarea id="f-message" name="message" rows="5" required></textarea></div>
+          <button class="bouton bouton--envoyer" type="submit">Envoyer</button>
+        </form>
+        <p class="contact__mail">Ou directement : <a href="mailto:contact@lesvestesquidorment.fr">contact@lesvestesquidorment.fr</a></p>
+        <footer class="pied">
+          <details><summary>Mentions légales</summary>
+            <p><strong>Éditeur :</strong> association Les Vestes qui Dorment (loi du 1er juillet 1901), siège social à Capbreton (40130). Contact : contact@lesvestesquidorment.fr.</p>
+            <p><strong>Directeur de la publication :</strong> le président de l'association.</p>
+            <p><strong>Hébergeur :</strong> GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+            <p><strong>Données personnelles :</strong> les informations envoyées via le formulaire servent uniquement à vous répondre et ne sont jamais cédées. Pour les faire supprimer, écrivez-nous.</p>
+          </details>
+          <p>© 2026 Les Vestes qui Dorment</p>
+        </footer>
+      </div>
+    </section>
   </main>
+
+  <script src="assets/scrollcraft.js" defer></script>
+  <script src="assets/film.js" defer></script>
 </body>
 </html>
