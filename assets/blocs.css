@@ -17,7 +17,7 @@
 /* l'image remplit l'écran en largeur (ses côtés passent sous la doudoune), le texte est dans une marge en bas */
 .bloc{position:relative;height:calc(100svh * (1 + var(--avant,0) + var(--defile,1.5)));background:var(--kraft)}
 .bloc__scene{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:1fr auto;background:var(--kraft)}
-.bloc__image{position:relative;overflow:hidden;background:#3a2416}
+.bloc__image{position:relative;overflow:hidden;background:#3a2416;margin-inline:var(--marge-img,0px)}
 .bloc__plan{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:62% 66%;will-change:transform}
 .bloc__plan img{position:absolute;display:block;max-width:none;user-select:none;-webkit-user-drag:none}
 .bloc__texte{box-sizing:border-box;width:100%;min-height:24svh;display:grid;align-content:center;

@@ -33,7 +33,18 @@
     if (cv) { cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); }
     k = Math.max(H / IH, (W / 2) / 1063);
     top0 = H / 2 - IH * k / 2;
-    BANDE = W < 760 ? 44 : Math.round(Math.max(30, Math.min(W * 0.11, 170)));
+    var base = W < 760 ? 44 : Math.round(Math.max(30, Math.min(W * 0.11, 170)));
+    // fenêtre très large : la zone de l'image ne dépasse pas le 16/9 de la vidéo (pas de zoom qui coupe le bas),
+    // les bords de la doudoune s'élargissent pour combler les côtés et passent 24 px sur l'image
+    var zone = $('.bloc__image'), m = 0;
+    if (zone && W >= 760 && !RM) {
+      for (var i = 0; i < 2; i++) {          // deux passes : la largeur du texte change la hauteur de l'image
+        doc.style.setProperty('--marge-img', m + 'px');
+        m = Math.max(0, Math.round((W - zone.clientHeight * 16 / 9) / 2));
+      }
+    }
+    doc.style.setProperty('--marge-img', m + 'px');
+    BANDE = Math.max(base, m ? m + 24 : 0);
     doc.style.setProperty('--bande-r', BANDE + 'px');
     if (tir) tir.style.width = (433 * 606 / 1373 * IH / 1584 * k).toFixed(1) + 'px';
     dernier = '';
