@@ -5,21 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Merci · Les Vestes qui Dorment</title>
   <link rel="icon" href="logo.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/Dormeuse-Regular.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/charte.css">
   <style>
-    body { margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center;
-      font-family: "Fredoka", system-ui, sans-serif; background: #FBF7EE; color: #0F2A61; text-align: center; padding: 20px; }
-    img { width: min(220px, 60vw); height: auto; }
-    h1 { font-weight: 600; margin: 16px 0 8px; }
-    a { color: #1278F0; }
+    body { margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 20px; text-align: center; }
+    .merci { position: relative; isolation: isolate; padding: 78px 40px 36px; max-width: 26rem; rotate: -.8deg; }
+    .merci::after { content: ""; position: absolute; inset: 0; z-index: -1; border: solid transparent; border-width: 0; border-image: url(img/ds/carte-paysage.webp) 122 30 30 30 fill / 58px 15px 15px 15px stretch; filter: drop-shadow(3px 7px 6px rgba(20,12,6,.45)); }
+    .merci img { width: min(220px, 55vw); height: auto; }
+    h1 { margin: 10px 0 8px; font-size: clamp(1.8rem, 1.4rem + 2vw, 2.4rem); line-height: 1.1; color: var(--carte-ink); }
+    p { margin: .4rem 0; color: var(--carte-ink-soft); }
   </style>
 </head>
 <body>
-  <div>
-    <img src="logo.svg" alt="Les Vestes qui Dorment" width="472" height="429">
-    <h1>Merci, message bien reçu !</h1>
+  <div class="merci">
+    <img src="img/ds/logo-1200.webp" alt="Les Vestes qui Dorment" width="1200" height="1132">
+    <h1>Merci, message bien reçu&nbsp;!</h1>
     <p>On te répond très vite.</p>
-    <p><a href="/">Retour à l'accueil</a></p>
+    <p style="margin-top:1.2rem"><a class="bouton" href="/">Retour à l'accueil</a></p>
   </div>
 </body>
 </html>

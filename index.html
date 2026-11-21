@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Les Vestes qui Dorment · une veste rapportée, une boisson offerte</title>
   <meta name="description" content="Association qui réveille les vestes qui dorment dans les placards pour les offrir à celles et ceux qui dorment dehors. Une veste rapportée au bar, une boisson offerte.">
-  <meta name="theme-color" content="#0F2A61">
+  <meta name="theme-color" content="#0A1A3D">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta property="og:title" content="Les Vestes qui Dorment">
@@ -19,22 +19,27 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="img/affiche.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/rideau-gauche.webp">
+  <link rel="preload" as="image" href="img/rideau-droite.webp">
+  <link rel="preload" as="image" href="img/tirette-languette.webp">
+  <link rel="preload" as="image" href="img/b1/fond.webp">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/Dormeuse-Regular.woff2" crossorigin>
   <link rel="stylesheet" href="assets/scrollcraft.css">
   <link rel="stylesheet" href="assets/film.css">
+  <link rel="stylesheet" href="assets/blocs.css">
+  <link rel="stylesheet" href="assets/charte.css">
 </head>
 <body>
   <a class="evitement" href="#contact">Aller directement au formulaire de contact</a>
 
-  <!-- La fermeture éclair : repère de position dans la page, présente tout du long. -->
-  <nav class="zip" aria-label="Fermeture éclair, position dans la page">
-    <div class="zip__dents zip__dents--ouvertes" aria-hidden="true"></div>
-    <div class="zip__dents zip__dents--fermees" aria-hidden="true"></div>
-    <div class="zip__tirette" role="slider" tabindex="0" aria-label="Tirette : faire glisser pour parcourir la page" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <svg viewBox="0 0 40 76" aria-hidden="true"><path class="t-corps" d="M8 4h24a4 4 0 0 1 4 4v18c0 4-3 7-6 9l-6 4H16l-6-4c-3-2-6-5-6-9V8a4 4 0 0 1 4-4z"/><path class="t-lien" d="M16 38h8v8h-8z"/><rect class="t-languette" x="11" y="44" width="18" height="30" rx="9"/><rect class="t-trou" x="17" y="58" width="6" height="10" rx="3"/></svg>
-    </div>
-  </nav>
+  <!-- L'ouverture : la doudoune fermée couvre l'écran, s'ouvre au premier défilement et reste sur les côtés. -->
+  <canvas class="rideau" aria-hidden="true"></canvas>
+  <div class="tirette" aria-hidden="true">
+    <img class="tirette__curseur" src="img/tirette-curseur.webp" width="276" height="358" alt="">
+    <img class="tirette__languette" src="img/tirette-languette.webp" width="206" height="451" alt="">
+    <img class="tirette__pont" src="img/tirette-pont.webp" width="276" height="358" alt="">
+  </div>
 
   <header class="onglets">
     <nav aria-label="Navigation principale">
@@ -47,49 +52,69 @@
   <main>
     <h1 class="sr-only">Les Vestes qui Dorment : on réveille les vestes qui dorment dans les placards pour celles et ceux qui dorment dehors</h1>
 
-    <!-- ===================== LE FILM : 27 s de plan-séquence, déroulés sur 20 hauteurs d'écran ===================== -->
-    <section id="top" class="film" data-sc-act="pin" data-sc-span="20" aria-label="L'histoire d'une veste, en film">
-      <div data-sc-stage class="film__scene">
-        <canvas class="film__fond" width="32" height="18" aria-hidden="true"></canvas>
-        <picture>
-          <source media="(orientation: portrait)" srcset="img/affiche-vertical.webp" width="720" height="1280">
-          <img class="film__poster" src="img/affiche.webp" width="1920" height="1080" alt="">
-        </picture>
-        <video class="film__video" muted playsinline preload="none" aria-hidden="true" data-src-1080="video/film-1080.mp4" data-src-720="video/film-720.mp4" data-src-vertical="video/film-vertical.mp4"></video>
-        <p class="film__charge" aria-hidden="true">Chargement du film…</p>
-        <p class="film__defile" aria-hidden="true">Fais défiler ↓</p>
-        <div class="bulles">
-          <p class="bulle" data-de="0.3" data-a="3.6" data-pos="haut">Dernier hiver pour cette veste… mais on va quand même la garder.</p>
-          <p class="bulle" data-de="4.55" data-a="8.2" data-pos="gauche">On la garde au cas où… mais souvent, ce jour ne vient jamais.</p>
-          <p class="bulle" data-de="8.3" data-a="9.6" data-pos="gauche">Alors la veste s'endort…</p>
-          <p class="bulle" data-de="12.6" data-a="15.2" data-pos="bas">Mais ce soir-là, dans un bar de la station, on réveille les vestes.</p>
-          <p class="bulle bulle--grande" data-de="16.8" data-a="19.8" data-pos="haut">Une veste rapportée, une boisson offerte.</p>
-          <p class="bulle" data-de="20.4" data-a="22.4" data-pos="bas">Puis une association de solidarité prend le relais.</p>
-          <p class="bulle bulle--grande bulle--fin" data-de="24.4" data-a="27.5" data-pos="bas">Et ce soir, cette veste va pouvoir réchauffer quelqu'un.</p>
+    <!-- ===================== BLOC 1 : la veste s'endort au placard (1,5 écran de défilement) ===================== -->
+    <section id="top" class="bloc bloc--1" style="--avant:1;--defile:2.5" aria-labelledby="b1-titre">
+      <div class="bloc__scene">
+        <div class="bloc__image">
+          <div class="bloc__plan b1" data-fx="0.5" data-fx-tel="0.6" data-fy="0.42" aria-hidden="true">
+            <img class="fond" src="img/b1/fond.webp" width="1920" height="1080" alt="">
+            <img class="fen f-printemps" src="img/b1/fenetre-printemps.webp" width="518" height="477" alt="">
+            <img class="fen f-ete" src="img/b1/fenetre-ete.webp" width="518" height="477" alt="">
+            <img class="fen f-automne" src="img/b1/fenetre-automne.webp" width="518" height="477" alt="">
+            <img class="vet v-doudoune" src="img/b1/doudoune.webp" alt="">
+            <img class="vet v-pull" src="img/b1/pull.webp" alt="">
+            <img class="vet v-velours" src="img/b1/velours.webp" alt="">
+            <img class="vet v-moutarde" src="img/b1/moutarde.webp" alt="">
+            <img class="vet v-polaire" src="img/b1/polaire.webp" alt="">
+          </div>
+        </div>
+        <div class="bloc__texte">
+          <h2 id="b1-titre">Cette veste en a vu, des hivers</h2>
+          <p>Après sa dernière saison, on la garde. Au cas où. Et elle s’endort au fond du placard.</p>
         </div>
       </div>
-      <p class="sr-only">Le film raconte l'histoire d'une doudoune bleue. Elle s'ouvre sur une chambre ; pliée, elle apparaît dans l'armoire et d'autres vêtements s'empilent sur elle pendant que les saisons passent à la fenêtre. La nuit tombe, on monte vers la lune, puis on redescend vers un chalet de station dont l'affiche annonce la collecte du soir. Au comptoir, la doudoune est échangée contre une boisson. Une photo accrochée au mur s'anime : dans la rue enneigée, quelqu'un apporte la doudoune et la tend à une personne qui la prend dans ses mains gantées de mitaines.</p>
-      <!-- Mouvement réduit : le film devient une planche d'images fixes. -->
-      <ol class="planche">
-        <li><img src="img/plan-01.webp" width="1280" height="720" loading="lazy" alt="Une doudoune bleue à capuche, fermée, sur un fond uni."></li>
-        <li><img src="img/plan-02.webp" width="1280" height="720" loading="lazy" alt="La fermeture éclair descend sur la doudoune matelassée."></li>
-        <li><img src="img/plan-03.webp" width="1280" height="720" loading="lazy" alt="La doudoune s'est ouverte sur une chambre : l'armoire ouverte, la fenêtre, la lampe, le lit."></li>
-        <li><img src="img/plan-04.webp" width="1280" height="720" loading="lazy" alt="Dans l'armoire, des vêtements de toutes les couleurs sont empilés sur la doudoune bleue pliée ; les saisons passent à la fenêtre."></li>
-        <li><img src="img/plan-05.webp" width="1280" height="720" loading="lazy" alt="Un croissant de lune dans un ciel étoilé."></li>
-        <li><img src="img/plan-06.webp" width="1280" height="720" loading="lazy" alt="Un chalet de station sous la neige, la nuit, entouré de sapins."></li>
-        <li><img src="img/plan-07.webp" width="1280" height="720" loading="lazy" alt="La porte du chalet, avec l'affiche de la collecte du soir."></li>
-        <li><img src="img/plan-08.webp" width="1280" height="720" loading="lazy" alt="Au comptoir du bar, la doudoune pliée est échangée contre une boisson, devant des clients souriants."></li>
-        <li><img src="img/plan-09.webp" width="1280" height="720" loading="lazy" alt="Une photo encadrée au mur du bar : une rue enneigée et un grand flocon."></li>
-        <li><img src="img/plan-10.webp" width="1280" height="720" loading="lazy" alt="Dans la rue, le flocon s'envole au passage de quelqu'un qui porte la doudoune."></li>
-        <li><img src="img/plan-11.webp" width="1280" height="720" loading="lazy" alt="Les mains gantées de moutarde portent la doudoune pliée dans la rue."></li>
-        <li><img src="img/plan-12.webp" width="1280" height="720" loading="lazy" alt="La doudoune est tendue à une personne qui la prend dans ses mains en mitaines grises."></li>
-      </ol>
+      <p class="sr-only">Dans une chambre de chalet, une armoire ouverte contient deux piles de vêtements et une place libre. La doudoune bleue, pliée, vient s'y poser. Les saisons passent à la fenêtre et d'autres vêtements s'empilent par-dessus : un pull, un pantalon en velours, une veste moutarde, une polaire. La doudoune dort tout en bas.</p>
+    </section>
+
+    <!-- ===================== BLOC 2 : ce soir, on réveille les vestes (2 écrans de défilement) ===================== -->
+    <section class="bloc bloc--2" style="--avant:0;--defile:2" aria-labelledby="b2-titre">
+      <div class="bloc__scene">
+        <div class="bloc__image">
+          <div class="bloc__plan b2" data-fx="0.5" data-fx-tel="0.36" data-fy="0.5" aria-hidden="true">
+            <img class="b2-poster" src="img/b2/poster.webp" width="1600" height="900" alt="" loading="lazy">
+            <video class="b2-video" muted playsinline preload="none" data-src="video/b2/bloc2-1600.mp4" data-src-petit="video/b2/bloc2-1280.mp4"></video>
+            <canvas class="b2-seq" width="854" height="480"></canvas>
+          </div>
+        </div>
+        <div class="bloc__texte">
+          <h2 id="b2-titre">Ce soir, on réveille les vestes</h2>
+          <p>On se retrouve au bar avec nos vestes endormies. Une veste, une boisson.</p>
+        </div>
+      </div>
+      <p class="sr-only">De nuit, on remonte la rue enneigée du village jusqu'au bar, où une affiche annonce « Collecte ce soir ». La porte s'ouvre sur un bar plein de villageois qui boivent des chocolats chauds. Au comptoir, un villageois pose sa doudoune bleue et le barman lui tend une boisson chaude.</p>
+    </section>
+
+    <section class="bloc bloc--3" style="--avant:0;--defile:1.5" aria-labelledby="b3-titre">
+      <div class="bloc__scene">
+        <div class="bloc__image">
+          <div class="bloc__plan b3" data-fx="0.5" data-fx-tel="0.5" data-fy="0.5" aria-hidden="true">
+            <img class="b3-poster" src="img/b3/poster.webp" width="1600" height="900" alt="" loading="lazy">
+            <video class="b3-video" muted playsinline preload="none" data-src="video/b3/bloc3-1600.mp4" data-src-petit="video/b3/bloc3-1280.mp4"></video>
+            <canvas class="b3-seq" width="854" height="480"></canvas>
+          </div>
+        </div>
+        <div class="bloc__texte">
+          <h2 id="b3-titre">Une association prend le relais</h2>
+          <p>Elle apporte les vestes dans la rue, à celles et ceux qui en ont besoin. Rien n’est revendu.</p>
+        </div>
+      </div>
+      <p class="sr-only">Dans une rue de la ville, la nuit, un flocon de neige flotte. Une bénévole passe avec la doudoune bleue pliée dans les bras et le flocon s'envole en virevoltant. On la suit quelques pas : elle tend la doudoune à un homme au bonnet gris, qui la prend et lui sourit.</p>
     </section>
 
     <!-- ===================== APRÈS LE FILM : on reste dans la nuit de la rue, sous les guirlandes ===================== -->
     <section class="invitation">
       <div class="invitation__inner" data-sc-in>
-        <h2>Toi aussi, tu as une veste <span>qui dort&nbsp;?</span></h2>
+        <h2 class="lettres-carton" data-texte="Toi aussi, tu as une veste qui dort ?">Toi aussi, tu as une veste <span>qui dort&nbsp;?</span></h2>
         <p>On réveille les vestes et le matos de montagne qui dorment au fond des placards pour les offrir à celles et ceux qui dorment dehors. La collecte se fait pendant des soirées dans des bars de stations de ski : le bar fait une belle soirée, on passe un bon moment, et les vestes repartent au chaud avec une association de solidarité partenaire.</p>
         <p class="invitation__formule">Une veste rapportée au bar, une boisson offerte.</p>
       </div>
@@ -102,7 +127,7 @@
         <h2 class="portes__titre" data-sc-in>Trois façons de la réveiller</h2>
         <div class="portes__grille" data-sc-in data-sc-stagger="200">
           <article class="porte">
-            <img class="porte__vignette" src="img/vignette-veste.webp" width="1200" height="900" alt="Une doudoune bleue pliée au milieu d'une pile de pulls, dans un placard de grenier de chalet." loading="lazy">
+            <img class="porte__vignette" src="img/vignette-veste.webp" width="1200" height="900" alt="Une doudoune bleue pliée entre des piles de pulls, dans l’armoire d’une chambre de chalet en maquette." loading="lazy">
             <h3>J'ai une veste qui dort</h3>
             <p>Si c'est chaud et propre, ça peut servir. Rapporte-la à la prochaine soirée dans ta station : le bar t'offre une boisson.</p>
             <a class="bouton" href="evenements.html">Voir la prochaine soirée</a>
@@ -124,7 +149,7 @@
     </section>
 
     <section id="contact" class="contact">
-      <div class="contact__ciel"><img src="img/montagnes.webp" width="2000" height="1000" alt="" loading="lazy"><h2>Écris-nous</h2></div>
+      <div class="contact__ciel"><img src="img/montagnes.webp" width="2000" height="1000" alt="" loading="lazy"><h2 class="lettres-carton" data-texte="Écris-nous">Écris-nous</h2></div>
       <div class="contact__corps">
         <form class="formulaire" action="https://formsubmit.co/contact@lesvestesquidorment.fr" method="POST">
           <input type="hidden" name="_subject" value="Nouveau message depuis lesvestesquidorment.fr">
@@ -155,7 +180,7 @@
   </main>
 
   <script src="assets/scrollcraft.js" defer></script>
-  <script src="assets/film.js" defer></script>
+  <script src="assets/blocs.js" defer></script>
   <script src="assets/onglets.js" defer></script>
 </body>
 </html>

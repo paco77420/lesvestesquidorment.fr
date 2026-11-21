@@ -1,0 +1,52 @@
+/* Les Vestes qui Dorment · l'ouverture en fermeture éclair et les blocs carrés au défilement.
+   Charte « écrit à la main » : kraft, encre brune, Dormeuse pour les titres, Shantell Sans pour le texte. */
+@font-face{font-family:"Dormeuse";src:url(fonts/Dormeuse-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--kraft:#c6a577;--kraft-fonce:#966f46;--encre:#342418;--encre-douce:#4a3524;--papier:#efe6d2;
+  --font-titre:"Dormeuse","Shantell Sans",cursive;--font-texte:"Shantell Sans",system-ui,sans-serif;
+  --bande:14px;--cote:min(60svh,calc(100vw - 2*var(--bande) - 24px))}
+
+/* ------------------------------------------------------------ la doudoune -- */
+.rideau{position:fixed;inset:0;width:100%;height:100%;z-index:60;pointer-events:none}
+.tirette{position:fixed;z-index:62;left:0;top:0;aspect-ratio:606/1373;pointer-events:none;will-change:transform;filter:drop-shadow(2px 5px 5px rgba(20,12,6,.45))}
+/* la tirette en trois calques : le curseur derrière, la languette (seule à pivoter, autour de la fente enfilée sur le pont), le pont devant */
+.tirette img{position:absolute;display:block;max-width:none}
+.tirette__curseur,.tirette__pont{left:4.455%;top:0;width:91.09%;height:52.22%}
+.tirette__languette{left:14.36%;top:34.30%;width:68.15%;height:65.70%;transform-origin:47.94% 19.84%;will-change:transform}
+
+/* ------------------------------------------------------------- un bloc -- */
+/* l'image remplit l'écran en largeur (ses côtés passent sous la doudoune), le texte est dans une marge en bas */
+.bloc{position:relative;height:calc(100svh * (1 + var(--avant,0) + var(--defile,1.5)));background:var(--kraft)}
+.bloc__scene{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:1fr auto;background:var(--kraft)}
+.bloc__image{position:relative;overflow:hidden;background:#3a2416}
+.bloc__plan{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:62% 66%;will-change:transform}
+.bloc__plan img{position:absolute;display:block;max-width:none;user-select:none;-webkit-user-drag:none}
+.bloc__texte{box-sizing:border-box;width:100%;min-height:24svh;display:grid;align-content:center;
+  padding:clamp(16px,3svh,30px) calc(var(--bande-r,30px) + 22px) max(clamp(16px,3svh,30px),env(safe-area-inset-bottom));
+  background:var(--kraft);color:var(--encre);border-top:3px solid var(--kraft-fonce)}
+.bloc__texte>*{max-width:44rem;margin-inline:auto;width:100%}
+.bloc__texte h2{margin:0 auto .25em;font:400 clamp(2rem,5.6svh,3.5rem)/1.02 var(--font-titre);color:var(--encre);letter-spacing:0}
+.bloc__texte p{margin:0 auto;font:400 clamp(1.15rem,2.9svh,1.6rem)/1.4 var(--font-texte);color:var(--encre-douce);text-wrap:pretty}
+
+/* les sections classiques laissent la place aux bords de la doudoune */
+main>section:not(.bloc){margin-inline:var(--bande-r,30px)}
+
+/* bloc 1 : calques posés en pourcentage de l'image source 1920 x 1080 */
+.b1 .fond{left:0;top:0;width:100%;height:100%}
+.b1 .fen{left:35.511%;top:0;width:26.989%;height:44.192%;opacity:0}
+.b1 .vet{left:61.683%;width:13.175%;height:auto;opacity:0}
+.b1 .v-doudoune{top:78.535%}.b1 .v-pull{top:72.222%}.b1 .v-velours{top:66.856%}.b1 .v-moutarde{top:61.111%}.b1 .v-polaire{top:49.558%}
+
+.b2 img,.b2 video,.b2 canvas,.b3 img,.b3 video,.b3 canvas{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block}
+.b2 video,.b2 canvas,.b3 video,.b3 canvas{opacity:0;transition:opacity .25s}
+.b2.pret video,.b2.pret canvas,.b3.pret video,.b3.pret canvas{opacity:1}
+.rm .b2 .b2-poster{content:url(../img/b2/fin.webp)}
+.rm .b3 .b3-poster{content:url(../img/b3/fin.webp)}
+
+@media (max-width:759px){.bloc__scene{grid-template-rows:56svh 1fr}.bloc__texte{min-height:0}}
+
+/* mouvement réduit : la doudoune reste ouverte sur les côtés, le bloc est dans son état final */
+.rm .tirette{display:none}
+.rm .bloc{height:auto}
+.rm .bloc__scene{position:relative;height:100svh}
+.rm .b1 .vet{opacity:1}
+@media (max-width:759px){.bloc__texte h2{font-size:clamp(1.75rem,4.5svh,2.4rem)}.bloc__texte p{font-size:clamp(1.05rem,2.4svh,1.3rem)}}

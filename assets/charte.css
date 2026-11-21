@@ -1,0 +1,206 @@
+/* Les Vestes qui Dorment · la charte du design system (« écrit à la main », matières Lumino) appliquée à tout ce qui suit
+   les trois blocs et aux pages Événements, Participation et Merci. Chargée en dernier : elle remplace les anciens styles
+   (Fredoka, pilules navy et moutarde) par le kraft, le papier scotché, la carte peinte, le feutre et le ciel de carton.
+   Les matières sont de vrais objets de maquette photographiés (img/ds/) : elles se posent sur un calque ::after étiré
+   derrière le texte, avec une ombre qui suit leur découpe. */
+@font-face{font-family:"Dormeuse";src:url(fonts/Dormeuse-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{
+  --kraft:#c6a577;--kraft-fonce:#966f46;--encre-carton:#342418;--ink:#342418;--ink-soft:#4a3524;
+  --papier-ds:#efe6d2;--carte-ink:#342418;--carte-ink-soft:#5b4636;--bonnet:#c8341f;--sarcelle:#2f7e7c;
+  --lumiere:#ffd27a;--moutarde:#e7b539;--moutarde-fonce:#b7861f;--nuit-profonde:#0a1a3d;--lien:#5a1f0e;
+  --font-display:"Dormeuse","Shantell Sans",system-ui,sans-serif;--font-text:"Shantell Sans",system-ui,sans-serif;
+  --sc-font-display:var(--font-display);--sc-font-text:var(--font-text);
+  --fond-kraft:var(--kraft) url(../img/ds/kraft.webp) center/640px;
+  --ombre-matiere:drop-shadow(2px 5px 4px rgba(42,26,18,.38));
+}
+html{background:var(--kraft)}
+body{background:var(--fond-kraft);color:var(--ink);font-family:var(--font-text)}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:0}
+a{color:var(--lien)}
+:focus-visible{outline:3px solid #0f2a61;outline-offset:3px;border-radius:3px}
+
+/* ------------------------------------------------------------ calque de matière commun */
+.bouton,.onglets nav,.porte,.fiche,.formulaire,.invitation__formule,.total,.engagement,.profil__qui{position:relative;isolation:isolate}
+.bouton::after,.onglets nav::after,.porte::after,.fiche::after,.formulaire::after,.invitation__formule::after,.total::after,.engagement::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--matiere) center/100% 100% no-repeat;filter:var(--ombre-matiere)}
+
+/* ------------------------------------------------------------ onglets : une bande de papier déchiré punaisée */
+.onglets nav{--matiere:url(../img/ds/bande-onglets.webp);background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;
+  border-radius:0;padding:14px 26px 10px;gap:2px;rotate:-.6deg}
+.onglets a{color:var(--carte-ink);font:400 clamp(1.15rem,1rem + .5vw,1.45rem)/1 var(--font-display);border-radius:0;min-height:48px;padding:0 1rem;
+  background:no-repeat center bottom 8px/0 13px url(../img/ds/gouache-1.webp);transition:background-size .33s cubic-bezier(.23,1,.32,1),transform .33s}
+.onglets a[aria-current="page"]{background-color:transparent;color:var(--carte-ink);box-shadow:none;background-size:84% 13px}
+@media (hover:hover){.onglets a:hover{background-color:transparent;background-size:60% 13px;transform:none}
+  .onglets a[aria-current="page"]:hover{background-color:transparent;background-size:84% 13px}}
+@media (max-width:480px){.onglets nav{padding:12px 16px 8px}.onglets a{font-size:1.05rem;padding:0 .6rem;min-height:44px}}
+@media (max-width:360px){.onglets a{font-size:.95rem;padding:0 .45rem}}
+
+/* ------------------------------------------------------------ bouton : une plaque de carte peinte */
+.bouton{--matiere:url(../img/ds/bouton-sombre.webp);background:none;box-shadow:none;border-radius:0;color:var(--papier-ds);
+  font:400 clamp(1.15rem,1.05rem + .3vw,1.35rem)/1.05 var(--font-display);padding:.75rem 1.5rem .6rem;rotate:-1.2deg;
+  transition:transform .33s cubic-bezier(.34,1.45,.64,1),filter .2s}
+.bouton:nth-of-type(2n){--matiere:url(../img/ds/bouton-kraft.webp);color:var(--encre-carton);rotate:1deg}
+@media (hover:hover){.bouton:hover{background:none;box-shadow:none;transform:translateY(-2px);rotate:0deg;--ombre-matiere:drop-shadow(3px 8px 5px rgba(42,26,18,.4))}}
+.bouton:active{box-shadow:none;transform:translateY(2px);--ombre-matiere:drop-shadow(1px 2px 1px rgba(42,26,18,.4))}
+.invitation .bouton,.page-tete .bouton,.contact__ciel .bouton{--matiere:url(../img/ds/bouton-creme.webp);color:var(--encre-carton)}
+
+/* ------------------------------------------------------------ nuit : le ciel en carton peint et ses étoiles de papier */
+.invitation,.page-tete{background:linear-gradient(rgba(10,26,61,.15),rgba(10,26,61,.4) 60%,rgba(10,26,61,.15)),url(../img/ds/nuit-ciel.webp) center bottom/cover var(--nuit-profonde)}
+.invitation::before,.page-tete::before{content:none}
+.invitation h2,.page-tete h1{font-weight:400;text-shadow:2px 3px 0 rgba(0,0,0,.35);color:#f3ecdf}
+.invitation h2 span,.page-tete h1 span{color:var(--lumiere)}
+.invitation p,.page-tete p{color:#e6dece;font-family:var(--font-text)}
+.page-tete__surtitre{font:600 .9rem/1 var(--font-text);letter-spacing:.08em;text-transform:none;color:var(--lumiere)}
+.guirlande{height:120px;bottom:0;background:url(../img/ds/guirlande.webp) center 88%/100% auto no-repeat;
+  -webkit-mask-image:linear-gradient(transparent,#000 40%);mask-image:linear-gradient(transparent,#000 40%)}
+@media (max-width:760px){.guirlande{background-size:220% auto;height:90px}}
+/* la formule sur une planche de bois clouée */
+.invitation .invitation__formule{--matiere:url(../img/ds/enseigne-bois.webp);--ombre-matiere:drop-shadow(3px 6px 5px rgba(0,0,0,.45));
+  background:none;border:0;border-radius:0;padding:.85rem 3rem .7rem;max-width:none;text-wrap:balance;color:#f3ecdf;font:400 clamp(1.25rem,1.1rem + .6vw,1.7rem)/1.15 var(--font-display);rotate:-1deg}
+.invitation{padding-bottom:clamp(7rem,12vw,10rem)}
+.page-tete{padding-bottom:clamp(8rem,12vw,10rem)}
+.page-tete img{border-radius:3px;box-shadow:none;filter:drop-shadow(4px 9px 8px rgba(0,0,0,.5));rotate:1.2deg}
+
+/* ------------------------------------------------------------ kraft : le contenu, posé sur le carton */
+.portes,.bois,.bois--clair{background:var(--fond-kraft);color:var(--ink)}
+.bois--clair{background:linear-gradient(rgba(150,111,70,.16),rgba(150,111,70,.16)),var(--fond-kraft)}
+.portes__titre,.bois h2{color:var(--ink);font-weight:400}
+.bois h2 span{color:var(--bonnet)}
+.bois .intro,.appel p{color:var(--ink-soft)}
+
+/* cartes : des fiches de papier aquarelle scotchées, un peu de travers */
+.porte,.fiche{--matiere:url(../img/ds/carte-paysage.webp);--ombre-matiere:drop-shadow(3px 7px 6px rgba(20,12,6,.45));
+  background:none;box-shadow:none;border-radius:0;color:var(--carte-ink);padding:2.2rem 1.7rem 1.8rem}
+.porte:nth-child(3n+1),.fiche:nth-of-type(3n+1){rotate:-.8deg}
+.porte:nth-child(3n+2),.fiche:nth-of-type(3n+2){rotate:.6deg}
+.porte:nth-child(3n),.fiche:nth-of-type(3n){rotate:-.4deg}
+.porte h3,.fiche h3{color:var(--carte-ink);font-weight:400}
+.porte p,.fiche p,.fiche li{color:var(--carte-ink-soft)}
+.porte__vignette,.profil>img,.partenaire__image,.affiche-evt__visuel img{border-radius:3px}
+.affiche-evt,.profil{padding:0}
+.affiche-evt__visuel,.profil>img{margin:14px 14px 0;width:calc(100% - 28px)}
+.affiche-evt__visuel{margin:14px 0 14px 14px;width:auto}
+.prochain__date{font-family:var(--font-display);font-weight:400;color:var(--encre-carton)}
+.prochain__lieu{color:var(--carte-ink-soft)}
+.lien-externe{color:var(--lien)}
+.affiche-evt__logos span{font-family:var(--font-display);color:var(--kraft-fonce)}
+.faits li::before{background:radial-gradient(circle at 35% 35%,#f6d27a,var(--moutarde) 45%,var(--moutarde-fonce));box-shadow:1px 2px 2px rgba(0,0,0,.3)}
+.partenaire__perso{filter:drop-shadow(3px 6px 4px rgba(20,12,6,.35))}
+
+/* pastilles : une bande de feutre cranté cousue main */
+.pastille{position:relative;isolation:isolate;background:none!important;border-radius:0;padding:.6rem 1.3rem .52rem;font:600 .88rem/1 var(--font-text);letter-spacing:.02em;color:var(--carte-ink)}
+.pastille::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border:solid transparent;border-width:0 16px;
+  border-image:url(../img/ds/feutre-moutarde.webp) 0 70 fill/0 16px stretch;filter:drop-shadow(1px 2px 1.5px rgba(42,26,18,.35))}
+.pastille--passe::after{border-image-source:url(../img/ds/feutre-creme.webp)}
+
+/* étapes : des fiches épinglées, le numéro peint sur un disque de carton */
+.journee .fiche{--matiere:url(../img/ds/carte-1.webp);padding:3.4rem 1.7rem 1.9rem;rotate:0deg}
+.journee .fiche:nth-child(2){--matiere:url(../img/ds/carte-2.webp)}
+.journee .fiche:nth-child(3){--matiere:url(../img/ds/carte-3.webp)}
+.journee .fiche::before{width:3.6rem;height:3.6rem;top:-1.2rem;left:.6rem;border-radius:0;box-shadow:none;color:var(--encre-carton);
+  background:url(../img/ds/disque-1.webp) center/contain no-repeat;font:400 2rem/1 var(--font-display);padding-top:4px;rotate:-6deg}
+.journee .fiche:nth-child(2)::before{background-image:url(../img/ds/disque-2.webp);rotate:4deg}
+.journee .fiche:nth-child(3)::before{background-image:url(../img/ds/disque-3.webp);rotate:-2deg}
+.duree{font:600 .95rem/1.2 var(--font-text);color:var(--kraft-fonce)}
+.total{--matiere:url(../img/ds/enseigne-kraft.webp);background:none;border:0;border-radius:0;padding:.85rem 3.4rem .75rem;color:var(--encre-carton);font:400 clamp(1.1rem,1rem + .4vw,1.35rem)/1.2 var(--font-display);rotate:-.8deg}
+.engagement{--matiere:url(../img/ds/etiquette-kraft-papier.webp);background:none!important;border-radius:0;padding:.9rem 1.2rem!important;color:var(--encre-carton)!important;font-weight:600}
+.profil__qui{font-family:var(--font-display);font-weight:400;color:var(--bonnet);text-shadow:none}
+.a-completer{border-radius:3px}
+
+/* ------------------------------------------------------------ contact : le ciel en carton, puis la feuille de papier */
+.contact{background:var(--fond-kraft);color:var(--ink)}
+.contact__ciel{background:var(--nuit-profonde)}
+.contact__ciel img{object-position:50% 65%}
+.contact__ciel h2{font-weight:400;color:#f3ecdf;text-shadow:3px 4px 0 rgba(0,0,0,.4)}
+.formulaire{--matiere:url(../img/ds/feuille-creme.webp);--ombre-matiere:drop-shadow(3px 10px 8px rgba(20,12,6,.4));
+  background:none;border:0;border-radius:0;box-shadow:none;color:var(--carte-ink);padding:clamp(2rem,4vw,3rem) clamp(1.5rem,3.5vw,2.8rem);rotate:-.4deg}
+.formulaire__intro{font:400 clamp(1.25rem,1.1rem + .5vw,1.5rem)/1.3 var(--font-display);color:var(--carte-ink)}
+.champ label{font-weight:600;color:var(--carte-ink)}
+.facultatif{color:var(--carte-ink-soft)}
+.champ input,.champ textarea,.champ select{font:400 16px/1.4 var(--font-text);color:var(--carte-ink);background:rgba(255,253,247,.85);
+  border:2px solid var(--kraft-fonce);border-radius:3px}
+.champ input:focus,.champ textarea:focus,.champ select:focus{border-color:var(--encre-carton)}
+.bouton--envoyer{rotate:-1.2deg}
+.contact__mail{color:var(--ink)}.contact__mail a{color:var(--lien)}
+.pied{border-top:2px dashed rgba(52,36,24,.35);color:var(--ink-soft)}
+.pied summary{color:var(--ink)}
+
+/* ------------------------------------------------------------ pied des pages : le mur de planches */
+.pied-simple{background:linear-gradient(rgba(0,0,0,.22),transparent 30%,rgba(0,0,0,.28)),url(../img/ds/bois.webp) center/520px #2a1a12;color:#e6dece}
+.pied-simple a{color:var(--lumiere)}
+
+@media (max-width:860px){.porte,.fiche{rotate:0deg}}
+@media (max-width:560px){.invitation .invitation__formule{padding:.8rem 2rem .65rem}.total{padding:.8rem 2.4rem .7rem}}
+@media (prefers-reduced-motion:reduce){.bouton,.onglets a{transition:none}.bouton:hover,.bouton:active{transform:none}}
+
+/* ============================================================ PAPIER À BORDS FIXES
+   Le papier n'est plus étiré d'un bloc : il est posé en border-image, le scotch et les déchirures gardent leur taille
+   quelle que soit la carte, seul le milieu s'étire. Le contenu (photo, texte, bouton) reste dans la zone utile :
+   sous le scotch, à l'intérieur des bords déchirés.
+   Mesures sur les matières : carte-paysage 900×654, scotch jusqu'à 122 px de haut, bords déchirés 30 px ;
+   feuille-creme 700×1023, scotch jusqu'à 110 px, bords 22 px. */
+.porte::after,.fiche::after,.formulaire::after{background:none;border:solid transparent;border-width:0;
+  border-image:url(../img/ds/carte-paysage.webp) 122 30 30 30 fill/58px 15px 15px 15px stretch}
+.formulaire::after{border-image:url(../img/ds/feuille-creme.webp) 110 22 22 22 fill/62px 14px 14px 14px stretch}
+.journee .fiche::after{border:0;border-image:none;background:var(--matiere) center/100% 100% no-repeat}
+
+/* zone utile : 58 px de scotch en haut, 15 px de bord déchiré autour, puis la marge du papier */
+.porte,.fiche{padding:74px 34px 34px}
+.journee .fiche{padding:3.6rem 1.9rem 2.2rem}
+.affiche-evt,.profil{padding:74px 34px 34px}
+.affiche-evt__visuel,.profil>img{margin:0;width:100%}
+.porte__vignette,.profil>img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;margin:0 0 1.2rem;
+  box-shadow:0 0 0 1px rgba(52,36,24,.18)}
+.profil__texte{padding:0}
+.affiche-evt{gap:1.6rem;align-items:start}
+.affiche-evt__visuel img{min-height:0;height:auto;aspect-ratio:12/5}
+.affiche-evt__texte{padding:0}
+.partenaire{padding:74px 34px 34px}
+.partenaire__perso{right:-10px;bottom:-22px}
+
+/* boutons : une ligne, à leur taille, toujours dans la carte */
+.porte .bouton,.fiche .bouton{font-size:clamp(1.02rem,.95rem + .25vw,1.18rem);white-space:nowrap;padding:.7rem 1.3rem .58rem;max-width:100%}
+.porte p{margin-bottom:1.4rem}
+
+/* formulaire : sous le scotch, puis dans les bords de la feuille */
+.formulaire{padding:84px clamp(28px,4vw,46px) clamp(30px,4vw,44px)}
+.contact__corps{margin-top:clamp(-6rem,-7vw,-3rem)}
+
+/* participation : l'en-tête n'a plus de photo, le texte prend la largeur */
+.page-tete__inner--seul{grid-template-columns:1fr;max-width:44rem}
+
+@media (max-width:560px){
+  .porte,.fiche,.affiche-evt,.profil,.partenaire{padding:70px 26px 28px}
+  .formulaire{padding:80px 24px 30px}
+  .porte .bouton,.fiche .bouton{white-space:normal;text-align:center}
+}
+.portes__grille,.profils,.journee,.frise,.deux-col{grid-template-columns:repeat(var(--cols,3),minmax(0,1fr))}
+.frise,.deux-col{--cols:2}
+@media (max-width:860px){.portes__grille,.profils,.journee,.frise,.deux-col{--cols:1}}
+
+/* ------------------------------------------------------------ lettres en carton (police de l'association, en version légère)
+   Dormeuse + face en carton kraft + tranche et ombre ; réservé aux grands titres posés sur la nuit. Le texte est répété
+   dans data-texte : la face en carton est un calque posé par-dessus, le texte réel reste lisible et sélectionnable. */
+.lettres-carton{position:relative;color:#8d6236!important;
+  text-shadow:.008em .012em 0 #80592f,.016em .024em 0 #74502b,.024em .036em 0 #684726,.05em .075em .07em rgba(10,6,3,.55)!important}
+.lettres-carton span{color:inherit!important}
+.lettres-carton::after{content:attr(data-texte);content:attr(data-texte) / "";position:absolute;inset:0;pointer-events:none;color:transparent;text-shadow:none;
+  background:url(../img/ds/carton-face.webp) center/14em;-webkit-background-clip:text;background-clip:text}
+.journee .fiche{padding-top:4.4rem}
+.total{padding-left:4rem;padding-right:4rem}
+@media (max-width:560px){.total{padding-left:2.8rem;padding-right:2.8rem}}
+.affiche-evt{align-items:stretch}
+.affiche-evt__visuel{display:flex}
+.affiche-evt__visuel img{height:100%;min-height:240px;aspect-ratio:auto;object-fit:cover;box-shadow:0 0 0 1px rgba(52,36,24,.18)}
+@media (max-width:860px){.affiche-evt__visuel img{height:auto;aspect-ratio:12/5;min-height:0}}
+.bouton{text-decoration:none}
+
+/* étapes : le même papier scotché à bords fixes que les autres fiches (plus de punaise étirée), numéro sur son disque de carton */
+.journee .fiche::after{background:none;border:solid transparent;border-width:0;
+  border-image:url(../img/ds/carte-paysage.webp) 122 30 30 30 fill/58px 15px 15px 15px stretch}
+.journee .fiche{padding:74px 34px 34px}
+.journee .fiche:nth-child(1){rotate:-.8deg}.journee .fiche:nth-child(2){rotate:.6deg}.journee .fiche:nth-child(3){rotate:-.4deg}
+.journee .fiche::before{top:8px;left:18px;z-index:1}
+/* « au total » : lettres claires sur une planche de bois, comme la formule de l'accueil */
+.total{--matiere:url(../img/ds/enseigne-bois.webp);--ombre-matiere:drop-shadow(3px 6px 5px rgba(0,0,0,.45));color:#f3ecdf}
+@media (max-width:860px){.journee .fiche{rotate:0deg}}
