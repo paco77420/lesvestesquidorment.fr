@@ -66,19 +66,6 @@
     }
   }
 
-  // ombre portée le long des bords ouverts (visible seulement dans l'ouverture)
-  function ombre(dx, pas) {
-    ctx.save();
-    if ('filter' in ctx) ctx.filter = 'blur(8px)';
-    ctx.strokeStyle = 'rgba(30,16,6,.45)'; ctx.lineWidth = 16;
-    [-1, 1].forEach(function (s) {
-      ctx.beginPath();
-      for (var y = 0; y <= H + pas; y += pas) { var x = W / 2 + s * dx(y); if (y === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
-      ctx.stroke();
-    });
-    ctx.restore();
-  }
-
   // décalage de la doudoune = défilement de la page, moins le défilement « épinglé » des blocs
   function decalage() {
     if (RM) return scrollY;
@@ -110,7 +97,7 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.clearRect(0, 0, W, H);
     var deforme = ob < 1;
-    if (oa > 0) ombre(dx, deforme ? 6 : 60);
+    // pas d'ombre le long des dents : seules les dents restent sur le fond
     moitie(imG, true, dx, off, deforme ? 3 : 4000);
     moitie(imD, false, dx, off, deforme ? 3 : 4000);
 
